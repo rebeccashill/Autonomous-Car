@@ -5,11 +5,10 @@ from scipy.optimize import minimize
 
 
 def distance_difference_squared(guess_location, pole, pole_measurement):
-    ### STUDENT CODE START
-    output = 0
-    # calc distance between guess location and pole.
+    # calculate the distance between the guess location and pole
+    output = np.linalg.norm(np.array(guess_location)-np.array(pole))
     # compare distance vs pole_measurement
-    ### STUDENT CODE END
+    output = pole_measurement - np.sqrt(output)
     return output**2
 
 def total_cost(guess_location, poles, pole_measurements):
