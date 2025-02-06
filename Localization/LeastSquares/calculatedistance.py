@@ -5,7 +5,7 @@ import numpy as np
 
 def distance(location, pole_location):
     ### STUDENT CODE START
-    output = 0
+    output = math.sqrt((pole_location[0] - location[0])**2 + (pole_location[1] - location[1])**2)
     ### STUDENT CODE END
     return output
 
