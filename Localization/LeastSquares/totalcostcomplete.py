@@ -6,10 +6,16 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
 def distance_difference_squared(guess_location, pole, pole_measurements):
-    ### STUDENT CODE START
-    output = 0
-    ### STUDENT CODE END
-    return output
+    # calculate the distance between the guess location and pole using the Euclidean distance formula
+    output = np.linalg.norm(np.array(guess_location)-np.array(pole))
+    # compare distance vs pole_measurement
+    output = np.sqrt(output)
+    # find the minimum of the differences between the output of the formula and the pole measurements
+    diff1 = pole_measurements[0] - output
+    diff2 = pole_measurements[1] - output
+    diff3 = pole_measurements[2] - output
+    output = min(diff1**2, diff2**2, diff3**2)
+    return output**2
 
 # 1D Example
 # pole = 5
