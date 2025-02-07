@@ -75,15 +75,19 @@ P_not_D = 0
 P_D_given_loc_i = np.zeros(distance)
 P_not_D_given_loc_i = np.zeros(distance)
 
-# STUDENT CODE START
 # Set the prior as if the robot has equal probability to be in each location.
-
+P_loc_i_prior += 1/distance
 # Set probabilities of detecing a pole or not detecting a pole.
-
+P_D = len(poles)/distance
+P_not_D = 1 - P_D
 # Set the probabilities for detecting (or not detecting) a pole for each
 # location i.
+for location in range(len(P_D_given_loc_i)):
+    if location+1 in poles:
+        P_D_given_loc_i[location] = 1.0
+    else:
+        P_not_D_given_loc_i[location] = 1.0
 
-# STUDENT CODE END
 
 
 # Setup done, run first calculation of robots location.
