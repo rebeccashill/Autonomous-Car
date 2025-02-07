@@ -24,17 +24,31 @@ def bayes(PBA, PA, PB):
 
 
 def shift_priors(P_loc_i):
-    # STUDENT CODE START
-    # Shift all probabilities to the right by one.
+    for i in range(len(P_loc_i) - 1, 1, -1):
+        # Shifting with uncertainty
+        P_loc_i[i] = P_loc_i[i-1] * 0.9 + P_loc_i[i-2] * 0.1
+    P_loc_i[1] = P_loc_i[0] * 0.9
+    P_loc_i[0] = 0
 
-    # STUDENT CODE END
-
-
+""" update_loc_probability()
+    Performs the Bayes Rule on each location.
+"""
 def update_loc_probability():
-    # STUDENT CODE START
-    # Perform Bayes Rule on each location.
-
-    # STUDENT CODE END
+    for i in range(len(P_loc_i_prior)):
+        # Calculate Posterior
+        if robot.detect_pole(poles):
+            # PAB = PBA * PA / PB
+            # P(Li | D) = P(D | Li) * P(Li) / P(D)
+            P_loc_i_posterior[i] = bayes(
+                P_D_given_loc_i[i],
+                P_loc_i_prior[i],
+                P_D)
+        else:
+            # P(Li | !D) = P(!D | Li) * P(Li) / P(!D)
+            P_loc_i_posterior[i] = bayes(
+                P_not_D_given_loc_i[i],
+                P_loc_i_prior[i],
+                P_not_D)
 
 
 distance = 40
