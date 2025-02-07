@@ -8,7 +8,7 @@ def create_poles(poles, distance):
     for p in poles:
         y[p] = 1
     x = range(distance)
-    plt.stem(x, y, use_line_collection=True)
+    plt.stem(x, y)
 
 
 def plot_poles(poles, distance):
