@@ -15,12 +15,11 @@ class Robot:
         else:
             return False
 
-
+""" bayes(PBA, PA, PB)
+    Returns the answer to the Bayes Rule.
+"""
 def bayes(PBA, PA, PB):
-    # STUDENT CODE START
-    # Make this function return the answer to Bayes Rule.
-
-    # STUDENT CODE END
+    PAB = PBA * PA / PB
     return PAB
 
 
