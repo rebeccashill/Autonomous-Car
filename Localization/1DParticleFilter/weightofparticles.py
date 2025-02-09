@@ -17,12 +17,11 @@ class Particle(Robot):
         self.measurement_sigma = 0.5
 
     def probability_density_function(self, mu, x):
-        ### STUDENT CODE START
-        ### STUDENT CODE END
+        weight = np.exp((-1/2)*((x - mu)/self.measurement_sigma)**2)/(self.measurement_sigma * np.sqrt(2 * np.pi))
+        return weight
 
     def update_weight(self, robot_dist):
-        ### STUDENT CODE START
-        ### STUDENT CODE START
+        self.weight = self.probability_density_function(robot_dist, self.pole_dist)
 
 
 # Plot Weights for a range of robot measurements.
