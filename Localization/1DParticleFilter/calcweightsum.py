@@ -18,10 +18,23 @@ class Robot:
         self.move_dist = 1
         self.pole_dist = -100
         self.max_measurement = 3
+        self.theta = np.array(poles)
+        self.speed_sigma = np.sum(poles)
+        self.theta_dot_sigma = np.dot(self.theta, self.speed_sigma)
 
     # Movement is perfectly accurate, even though we are assuming it isn't.
     def move(self):
         self.pos += self.move_dist
+
+    def move(self, speed, theta_dot):
+        self.theta += theta_dot
+        self.x += math.cos(self.theta) * speed
+        self.y += math.sin(self.theta) * speed
+
+    def predict(self, speed, theta_dot):
+        theta_dot = r.normalvariate(theta_dot, self.theta_dot_sigma)
+        speed = r.normalvariate(speed, self.speed_sigma)
+        self.move(speed, theta_dot)
 
     # Measurement is perfectly accurate even though we are assuming it isn't.
     def measure(self, poles):
