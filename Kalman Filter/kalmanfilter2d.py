@@ -21,7 +21,7 @@ options['RECIEVE_INPUTS'] = False
 
     Kalman filter works in 1 dimension. Utilizes linear algebra to allow the car to drive forward.
     1. Start with 5 matrices, designed by the creator of the Kalman Filter.
-        -x, P, F, H, R
+        -x, u, P, F, H, R, I
         -x = State vector
         -u = External force
         -P = Uncertainty Matrix
