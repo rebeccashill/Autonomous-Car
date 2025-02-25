@@ -23,10 +23,12 @@ options['RECIEVE_INPUTS'] = False
     1. Start with 5 matrices, designed by the creator of the Kalman Filter.
         -x, P, F, H, R
         -x = State vector
+        -u = External force
         -P = Uncertainty Matrix
         -F = State Transition Matrix
         -H = Measurement Matrix
         -R = Measurement Uncertainty
+        -I = Identity Matrix
     2. Use these matrices to predict using the following formulas:
         -x = F x
         -P = F P F^T
