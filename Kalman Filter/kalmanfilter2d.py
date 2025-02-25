@@ -58,6 +58,7 @@ class KalmanFilter:
         self.x = self.F*self.x + self.u
         self.P = self.F * self.P * np.transpose(self.F)
         return
+        
     def measure_and_update(self,measurements, dt):
         Z = np.matrix(measurements)
         y = np.transpose(Z) - (self.H * self.x)
