@@ -93,15 +93,24 @@ class KalmanFilter:
         return
         
     def measure_and_update(self,measurements, dt):
+        # Create a matrix based on the measurements.
         Z = np.matrix(measurements)
+        # y = flip z and multiply H * x
         y = np.transpose(Z) - (self.H * self.x)
+        # S = H * P * flip H + r
         S = self.H * self.P * np.transpose(self.H) + self.R
+        # K = P * flip H * inverted S
         K = self.P * np.transpose(self.H) * np.linalg.inv(S)
+
+        # Various calculations to calculate x and P
         self.x = self.x + (K * y)
         self.P = (self.I - (K * self.H)) * self.P
+        
+        # Return first 2 values of the state of the matrix
         return [self.x[0], self.x[1]]
 
     def recieve_inputs(self, u_steer, u_pedal):
+        # Function to recieve inputs
         return
 
 sim_run(options,KalmanFilter)
