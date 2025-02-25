@@ -1,4 +1,2 @@
 # Autonomous Robots: Kalman Filter
-Assignments for my Udemy course on Kalman Filters.
-
-Course link: www.udemy.com/course/autonomous-robots-kalman-filter/
+The Kalman Filter estimates the state of a system (in this case, a robot) through multiple measurements. The simulation involves a car that has the capability to drive around.
