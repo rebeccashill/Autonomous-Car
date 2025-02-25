@@ -12,6 +12,33 @@ options['DRIVE_IN_CIRCLE'] = False
 options['MEASURE_ANGLE'] = False
 options['RECIEVE_INPUTS'] = False
 
+""" Kalman Filter Class
+    Matrices: initial state, uncertainty matrix, next state matrix, measurement matrix,
+    measurement uncertainty, and identity matrix. Same as the 1D Kalman Filter, but expanded.
+    def predict(self, dt)
+    def measure_and_update(self, measurements, dt)
+    def recieve_inputs(self, u_steer, u_pedal)
+
+    Kalman filter works in 1 dimension. Utilizes linear algebra to allow the car to drive forward.
+    1. Start with 5 matrices, designed by the creator of the Kalman Filter.
+        -x, P, F, H, R
+        -x = State vector
+        -P = Uncertainty Matrix
+        -F = State Transition Matrix
+        -H = Measurement Matrix
+        -R = Measurement Uncertainty
+    2. Use these matrices to predict using the following formulas:
+        -x = F x
+        -P = F P F^T
+    3. Measure and Update
+        -Z = measurements
+        -y = Z^T - H x
+        -S = HPH^T + R
+        -K = PH^T S^-1
+        -x = x + K y
+        -P = (I-KH)P
+
+"""
 class KalmanFilter:
     def __init__(self):
         # Initial State
