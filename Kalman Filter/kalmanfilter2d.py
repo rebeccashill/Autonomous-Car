@@ -15,6 +15,7 @@ options['RECIEVE_INPUTS'] = False
 """ Kalman Filter Class
     Matrices: initial state, uncertainty matrix, next state matrix, measurement matrix,
     measurement uncertainty, and identity matrix. Same as the 1D Kalman Filter, but expanded.
+    Everything is scaled up to 4 dimensions.
     def predict(self, dt)
     def measure_and_update(self, measurements, dt)
     def recieve_inputs(self, u_steer, u_pedal)
@@ -79,11 +80,14 @@ class KalmanFilter:
                             [0., 1., 0., 0.],
                             [0., 0., 1., 0.],
                             [0., 0., 0., 1.]])
+
     def predict(self, dt):
+        # Increment the P matrix.
         self.P[0,0] += 0.1
         self.P[1,1] += 0.1
         self.P[2,2] += 0.1
         self.P[3,3] += 0.1
+        # Calculate the new x and P matrices using the equations in the description.
         self.x = self.F*self.x + self.u
         self.P = self.F * self.P * np.transpose(self.F)
         return
